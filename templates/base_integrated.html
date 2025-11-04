@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}École de Luxe et Design{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+        }
+
+        .menu-section {
+            margin: 20px 0;
+        }
+
+        .menu-section-title {
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #95a5a6;
+            font-weight: 600;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding-left: 25px;
+        }
+
+        .menu-item.active {
+            background: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .menu-item i {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: white;
+            padding: 15px 30px;
+            margin: -20px -20px 20px -20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background: white;
+            border-bottom: 2px solid #ecf0f1;
+            font-weight: 600;
+            padding: 15px 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .stat-card p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            border-color: #2980b9;
+        }
+
+        .btn-success {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+            }
+
+            .sidebar.active {
+                width: var(--sidebar-width);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .module-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge-new {
+            background: #e74c3c;
+            color: white;
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-graduation-cap fa-2x mb-2"></i>
+            <h3>École de Luxe<br>et Design</h3>
+        </div>
+
+        <div class="sidebar-menu">
+            <!-- Module 1: Administration -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-cog"></i> Administration Générale
+                </div>
+                <a href="/users" class="menu-item">
+                    <i class="fas fa-users"></i> Utilisateurs
+                </a>
+                <a href="/roles" class="menu-item">
+                    <i class="fas fa-user-shield"></i> Rôles & Permissions
+                </a>
+                <a href="/settings" class="menu-item">
+                    <i class="fas fa-sliders-h"></i> Paramètres
+                </a>
+                <a href="/campuses" class="menu-item">
+                    <i class="fas fa-building"></i> Campus & Filières
+                </a>
+            </div>
+
+            <!-- Module 2: Pédagogique -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-book"></i> Pédagogique
+                </div>
+                <a href="/programs" class="menu-item">
+                    <i class="fas fa-graduation-cap"></i> Programmes
+                </a>
+                <a href="/courses" class="menu-item">
+                    <i class="fas fa-book-open"></i> Cours & Matières
+                </a>
+                <a href="/classes" class="menu-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Classes
+                </a>
+                <a href="/attendance" class="menu-item">
+                    <i class="fas fa-calendar-check"></i> Assiduité
+                </a>
+                <a href="/grades" class="menu-item">
+                    <i class="fas fa-clipboard-list"></i> Notes & Évaluations
+                </a>
+            </div>
+
+            <!-- Module 3: Étudiants -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-user-graduate"></i> Étudiants
+                </div>
+                <a href="/students" class="menu-item">
+                    <i class="fas fa-id-card"></i> Gestion Étudiants
+                </a>
+                <a href="/enrollments" class="menu-item">
+                    <i class="fas fa-user-plus"></i> Inscriptions
+                </a>
+                <a href="/student-documents" class="menu-item">
+                    <i class="fas fa-file-alt"></i> Documents
+                </a>
+            </div>
+
+            <!-- Module 4: RH & Enseignants -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-user-tie"></i> RH & Personnel
+                </div>
+                <a href="/teachers" class="menu-item">
+                    <i class="fas fa-chalkboard-teacher"></i> Enseignants
+                </a>
+                <a href="/staff" class="menu-item">
+                    <i class="fas fa-users-cog"></i> Personnel
+                </a>
+                <a href="/contracts" class="menu-item">
+                    <i class="fas fa-file-contract"></i> Contrats
+                </a>
+                <a href="/leaves" class="menu-item">
+                    <i class="fas fa-calendar-times"></i> Congés
+                </a>
+                <a href="/evaluations" class="menu-item">
+                    <i class="fas fa-star"></i> Évaluations
+                </a>
+            </div>
+
+            <!-- Module 5: Financier -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-euro-sign"></i> Financier
+                </div>
+                <a href="/financial" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i> Frais de Scolarité
+                </a>
+                <a href="/payments" class="menu-item">
+                    <i class="fas fa-credit-card"></i> Paiements
+                </a>
+                <a href="/invoices" class="menu-item">
+                    <i class="fas fa-file-invoice"></i> Factures
+                </a>
+                <a href="/scholarships" class="menu-item">
+                    <i class="fas fa-hand-holding-usd"></i> Bourses
+                </a>
+            </div>
+
+            <!-- Module 6: Infrastructure -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-warehouse"></i> Infrastructure
+                </div>
+                <a href="/rooms" class="menu-item">
+                    <i class="fas fa-door-open"></i> Salles
+                </a>
+                <a href="/equipment" class="menu-item">
+                    <i class="fas fa-tools"></i> Équipements
+                </a>
+                <a href="/inventory" class="menu-item">
+                    <i class="fas fa-boxes"></i> Inventaire
+                </a>
+                <a href="/events" class="menu-item">
+                    <i class="fas fa-calendar-alt"></i> Événements
+                </a>
+            </div>
+
+            <!-- Module 7: Communication -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-bullhorn"></i> Communication
+                </div>
+                <a href="/leads" class="menu-item">
+                    <i class="fas fa-user-plus"></i> Prospects (CRM)
+                </a>
+                <a href="/campaigns" class="menu-item">
+                    <i class="fas fa-ad"></i> Campagnes
+                </a>
+                <a href="/alumni" class="menu-item">
+                    <i class="fas fa-user-graduate"></i> Alumni
+                </a>
+                <a href="/partners" class="menu-item">
+                    <i class="fas fa-handshake"></i> Partenaires
+                </a>
+            </div>
+
+            <!-- Module 8: Reporting -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-chart-bar"></i> Reporting & BI
+                </div>
+                <a href="/dashboard" class="menu-item active">
+                    <i class="fas fa-tachometer-alt"></i> Tableau de Bord
+                </a>
+                <a href="/reports" class="menu-item">
+                    <i class="fas fa-file-pdf"></i> Rapports
+                </a>
+                <a href="/analytics" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Analyses
+                </a>
+            </div>
+
+            <!-- Module 9: Sécurité -->
+            <div class="menu-section">
+                <div class="menu-section-title">
+                    <i class="fas fa-shield-alt"></i> Sécurité
+                </div>
+                <a href="/audit-logs" class="menu-item">
+                    <i class="fas fa-history"></i> Logs d'Audit
+                </a>
+                <a href="/gdpr" class="menu-item">
+                    <i class="fas fa-user-lock"></i> Conformité RGPD
+                </a>
+                <a href="/backups" class="menu-item">
+                    <i class="fas fa-database"></i> Sauvegardes
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div>
+                <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="topbar-title">{% block page_title %}Tableau de Bord{% endblock %}</span>
+            </div>
+            <div class="user-menu">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle"></i> Admin
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> Mon Profil</a></li>
+                        <li><a class="dropdown-item" href="/preferences"><i class="fas fa-cog"></i> Préférences</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-language"></i> FR
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('fr')">🇫🇷 Français</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">🇬🇧 English</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="changeLanguage('ar')">🇲🇦 العربية</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        function changeLanguage(lang) {
+            console.log('Changing language to:', lang);
+            // Implement language change logic
+            fetch('/api/preferences', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ language: lang })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Language changed:', data);
+                location.reload();
+            });
+        }
+
+        // Highlight active menu item based on current URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

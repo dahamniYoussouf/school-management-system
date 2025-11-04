@@ -1,0 +1,420 @@
+{% extends "base_integrated.html" %}
+
+{% block title %}Tableau de Bord - École de Luxe et Design{% endblock %}
+
+{% block page_title %}Tableau de Bord Général{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Welcome Banner -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div class="card-body p-4">
+                    <h2><i class="fas fa-home"></i> Bienvenue sur le Tableau de Bord</h2>
+                    <p class="mb-0">Système de gestion scolaire intégré - Vue d'ensemble de tous les modules</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards Row 1 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <i class="fas fa-user-graduate"></i>
+                <h3 id="totalStudents">-</h3>
+                <p>Étudiants Actifs</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3 id="totalTeachers">-</h3>
+                <p>Enseignants</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <i class="fas fa-graduation-cap"></i>
+                <h3 id="totalPrograms">-</h3>
+                <p>Programmes</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <i class="fas fa-chalkboard"></i>
+                <h3 id="activeClasses">-</h3>
+                <p>Classes Actives</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards Row 2 -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3 id="pendingPayments">-</h3>
+                <p>Paiements en Attente</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                <i class="fas fa-door-open"></i>
+                <h3>42</h3>
+                <p>Salles Disponibles</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>8</h3>
+                <p>Événements à Venir</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                <i class="fas fa-user-plus"></i>
+                <h3>23</h3>
+                <p>Nouveaux Prospects</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Row -->
+    <div class="row">
+        <!-- Module Overview -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-th-large"></i> Modules du Système</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- Module 1 -->
+                        <div class="col-md-6">
+                            <div class="card border-primary">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-cog text-primary"></i>
+                                        1. Administration Générale
+                                    </h6>
+                                    <p class="card-text small">
+                                        Gestion des utilisateurs, rôles, permissions, paramètres globaux et campus
+                                    </p>
+                                    <a href="/users" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 2 -->
+                        <div class="col-md-6">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-book text-success"></i>
+                                        2. Module Pédagogique
+                                    </h6>
+                                    <p class="card-text small">
+                                        Programmes, cours, emplois du temps, assiduité et évaluations
+                                    </p>
+                                    <a href="/programs" class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 3 -->
+                        <div class="col-md-6">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-user-graduate text-info"></i>
+                                        3. Portail Étudiant
+                                    </h6>
+                                    <p class="card-text small">
+                                        Inscriptions, profils, documents, notes et communications
+                                    </p>
+                                    <a href="/students" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 4 -->
+                        <div class="col-md-6">
+                            <div class="card border-warning">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-user-tie text-warning"></i>
+                                        4. RH & Enseignants
+                                    </h6>
+                                    <p class="card-text small">
+                                        Gestion du personnel, contrats, congés et évaluations
+                                    </p>
+                                    <a href="/teachers" class="btn btn-sm btn-outline-warning">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 5 -->
+                        <div class="col-md-6">
+                            <div class="card border-danger">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-euro-sign text-danger"></i>
+                                        5. Module Financier
+                                    </h6>
+                                    <p class="card-text small">
+                                        Frais de scolarité, paiements, factures et bourses
+                                    </p>
+                                    <a href="/financial" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 6 -->
+                        <div class="col-md-6">
+                            <div class="card border-secondary">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-warehouse text-secondary"></i>
+                                        6. Infrastructure
+                                    </h6>
+                                    <p class="card-text small">
+                                        Salles, équipements, inventaire et événements
+                                    </p>
+                                    <a href="/rooms" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 7 -->
+                        <div class="col-md-6">
+                            <div class="card border-primary">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-bullhorn text-primary"></i>
+                                        7. Communication & Marketing
+                                    </h6>
+                                    <p class="card-text small">
+                                        CRM, campagnes, alumni et partenaires
+                                    </p>
+                                    <a href="/leads" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 8 -->
+                        <div class="col-md-6">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-chart-bar text-success"></i>
+                                        8. Reporting & BI
+                                    </h6>
+                                    <p class="card-text small">
+                                        Tableaux de bord, rapports et analyses
+                                    </p>
+                                    <a href="/reports" class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 9 -->
+                        <div class="col-md-6">
+                            <div class="card border-info">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-shield-alt text-info"></i>
+                                        9. Sécurité & Conformité
+                                    </h6>
+                                    <p class="card-text small">
+                                        Authentification, RGPD, audit et sauvegardes
+                                    </p>
+                                    <a href="/audit-logs" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Module 10 -->
+                        <div class="col-md-6">
+                            <div class="card border-warning">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-mobile-alt text-warning"></i>
+                                        10. Mobile & UX
+                                    </h6>
+                                    <p class="card-text small">
+                                        Interface responsive, notifications et préférences
+                                    </p>
+                                    <a href="/preferences" class="btn btn-sm btn-outline-warning">
+                                        <i class="fas fa-arrow-right"></i> Accéder
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-lg-4">
+            <!-- Recent Activity -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5><i class="fas fa-history"></i> Activités Récentes</h5>
+                </div>
+                <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                    <div class="activity-item mb-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-user-plus text-success fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <p class="mb-0 small"><strong>Nouvel étudiant inscrit</strong></p>
+                                <p class="mb-0 small text-muted">Marie Dubois - Mode & Design</p>
+                                <p class="mb-0 small text-muted">Il y a 2 heures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-credit-card text-primary fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <p class="mb-0 small"><strong>Paiement reçu</strong></p>
+                                <p class="mb-0 small text-muted">Jean Martin - 2,500 EUR</p>
+                                <p class="mb-0 small text-muted">Il y a 3 heures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-calendar-check text-info fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <p class="mb-0 small"><strong>Nouveau cours créé</strong></p>
+                                <p class="mb-0 small text-muted">Design de Luxe Avancé</p>
+                                <p class="mb-0 small text-muted">Il y a 5 heures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="activity-item mb-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-file-invoice text-warning fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <p class="mb-0 small"><strong>Facture générée</strong></p>
+                                <p class="mb-0 small text-muted">Facture #2024-0157</p>
+                                <p class="mb-0 small text-muted">Il y a 6 heures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-bolt"></i> Actions Rapides</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i> Nouvel Étudiant
+                        </button>
+                        <button class="btn btn-success btn-sm">
+                            <i class="fas fa-book"></i> Nouveau Cours
+                        </button>
+                        <button class="btn btn-info btn-sm">
+                            <i class="fas fa-calendar"></i> Planifier Événement
+                        </button>
+                        <button class="btn btn-warning btn-sm">
+                            <i class="fas fa-file-pdf"></i> Générer Rapport
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Information -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <p class="mb-0 small text-muted">Version du Système</p>
+                            <h5>2.0.0</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="mb-0 small text-muted">Modules Actifs</p>
+                            <h5>10/10</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="mb-0 small text-muted">Dernière Sauvegarde</p>
+                            <h5>Aujourd'hui</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="mb-0 small text-muted">Statut</p>
+                            <h5><span class="badge bg-success">Opérationnel</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Fetch and display statistics
+    async function loadStatistics() {
+        try {
+            const response = await fetch('/api/dashboard/stats');
+            const data = await response.json();
+
+            document.getElementById('totalStudents').textContent = data.total_students || 0;
+            document.getElementById('totalTeachers').textContent = data.total_teachers || 0;
+            document.getElementById('totalPrograms').textContent = data.total_programs || 0;
+            document.getElementById('activeClasses').textContent = data.active_classes || 0;
+            document.getElementById('pendingPayments').textContent = data.pending_payments || 0;
+        } catch (error) {
+            console.error('Error loading statistics:', error);
+        }
+    }
+
+    // Load statistics on page load
+    document.addEventListener('DOMContentLoaded', loadStatistics);
+
+    // Refresh every 30 seconds
+    setInterval(loadStatistics, 30000);
+</script>
+{% endblock %}
