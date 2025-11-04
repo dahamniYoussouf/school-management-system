@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Classes - School Management System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Class Management</h2>
+    <button class="btn btn-primary" onclick="showAddModal()">Add New Class</button>
+</div>
+
+<div id="classesList" class="data-table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Class Name</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+                <th>Schedule</th>
+                <th>Room</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="classesTableBody">
+        </tbody>
+    </table>
+</div>
+
+<!-- Add/Edit Modal -->
+<div id="classModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle">Add Class</h3>
+        <form id="classForm">
+            <input type="hidden" id="classId">
+            <div class="form-group">
+                <label>Class Name:</label>
+                <input type="text" id="className" required>
+            </div>
+            <div class="form-group">
+                <label>Subject:</label>
+                <input type="text" id="subject" required>
+            </div>
+            <div class="form-group">
+                <label>Teacher:</label>
+                <select id="teacherId" required>
+                    <option value="">Select Teacher</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Schedule:</label>
+                <input type="text" id="schedule" placeholder="e.g., Mon/Wed/Fri 10:00-11:00">
+            </div>
+            <div class="form-group">
+                <label>Room:</label>
+                <input type="text" id="room">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/classes.js') }}"></script>
+{% endblock %}

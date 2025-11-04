@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance - School Management System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Attendance Management</h2>
+    <button class="btn btn-primary" onclick="showAddModal()">Record Attendance</button>
+</div>
+
+<div id="attendanceList" class="data-table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceTableBody">
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Modal -->
+<div id="attendanceModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Record Attendance</h3>
+        <form id="attendanceForm">
+            <div class="form-group">
+                <label>Student:</label>
+                <select id="studentId" required>
+                    <option value="">Select Student</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Class:</label>
+                <select id="classId" required>
+                    <option value="">Select Class</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select id="status" required>
+                    <option value="">Select Status</option>
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Late">Late</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+{% endblock %}

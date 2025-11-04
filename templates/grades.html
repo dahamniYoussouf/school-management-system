@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Grades - School Management System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Grade Management</h2>
+    <button class="btn btn-primary" onclick="showAddModal()">Add Grade</button>
+</div>
+
+<div id="gradesList" class="data-table">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Assignment</th>
+                <th>Grade</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="gradesTableBody">
+        </tbody>
+    </table>
+</div>
+
+<!-- Add/Edit Modal -->
+<div id="gradeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle">Add Grade</h3>
+        <form id="gradeForm">
+            <input type="hidden" id="gradeId">
+            <div class="form-group">
+                <label>Student:</label>
+                <select id="studentId" required>
+                    <option value="">Select Student</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Class:</label>
+                <select id="classId" required>
+                    <option value="">Select Class</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Assignment Name:</label>
+                <input type="text" id="assignmentName" required>
+            </div>
+            <div class="form-group">
+                <label>Grade:</label>
+                <input type="number" id="grade" step="0.01" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/grades.js') }}"></script>
+{% endblock %}

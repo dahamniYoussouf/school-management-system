@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home - School Management System{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h2>Welcome to School Management System</h2>
+    <p>Manage your school efficiently with our comprehensive system</p>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <h3>Students</h3>
+        <p>Manage student records, enrollment, and information</p>
+        <a href="/students" class="btn">View Students</a>
+    </div>
+
+    <div class="card">
+        <h3>Teachers</h3>
+        <p>Manage teacher profiles and assignments</p>
+        <a href="/teachers" class="btn">View Teachers</a>
+    </div>
+
+    <div class="card">
+        <h3>Classes</h3>
+        <p>Create and manage classes and schedules</p>
+        <a href="/classes" class="btn">View Classes</a>
+    </div>
+
+    <div class="card">
+        <h3>Attendance</h3>
+        <p>Track student attendance for all classes</p>
+        <a href="/attendance" class="btn">View Attendance</a>
+    </div>
+
+    <div class="card">
+        <h3>Grades</h3>
+        <p>Record and manage student grades and assessments</p>
+        <a href="/grades" class="btn">View Grades</a>
+    </div>
+</div>
+{% endblock %}
