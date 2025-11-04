@@ -30,7 +30,7 @@ marshmallow-sqlalchemy==0.29.0
 
 # Excel/CSV Export
 openpyxl==3.1.2
-pandas==2.1.4
+pandas>=2.2.0
 
 # PDF Generation
 reportlab==4.0.7
